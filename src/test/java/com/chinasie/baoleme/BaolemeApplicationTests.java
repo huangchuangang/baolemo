@@ -32,12 +32,9 @@ public class BaolemeApplicationTests {
 	}
 	@Test	
 	public void testMydatis()  {
-		//ApplicationContext ctf=new ClassPathXmlApplicationContext("applicationContext.xml");
-		//DataSource datasource=(DataSource) ctf.getBean("dataSource");		
-		//System.out.println(datasource);
 		
-		Kind employee =kindapper.selectById(1);
-		System.out.println(employee);
+		Kind kind =kindapper.selectByPrimaryKey(1);
+		System.out.println(kind);
 
 	}
 
