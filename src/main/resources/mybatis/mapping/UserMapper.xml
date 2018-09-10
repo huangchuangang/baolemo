@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinasie.baoleme.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.chinasie.baoleme.domain.User" >
+    <id column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_xxx" property="userXxx" jdbcType="VARCHAR" />
+    <result column="user_xxxx" property="userXxxx" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_name, user_password, user_xxx, user_xxxx
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_user
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.chinasie.baoleme.domain.User" >
+    insert into t_user (user_name, user_password, user_xxx, 
+      user_xxxx)
+    values (#{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userXxx,jdbcType=VARCHAR}, 
+      #{userXxxx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasie.baoleme.domain.User" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+      <if test="userXxx != null" >
+        user_xxx,
+      </if>
+      <if test="userXxxx != null" >
+        user_xxxx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userXxx != null" >
+        #{userXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="userXxxx != null" >
+        #{userXxxx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinasie.baoleme.domain.User" >
+    update t_user
+    <set >
+      <if test="userPassword != null" >
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userXxx != null" >
+        user_xxx = #{userXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="userXxxx != null" >
+        user_xxxx = #{userXxxx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinasie.baoleme.domain.User" >
+    update t_user
+    set user_password = #{userPassword,jdbcType=VARCHAR},
+      user_xxx = #{userXxx,jdbcType=VARCHAR},
+      user_xxxx = #{userXxxx,jdbcType=VARCHAR}
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </update>
+</mapper>

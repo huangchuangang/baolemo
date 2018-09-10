@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinasie.baoleme.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.chinasie.baoleme.domain.Order" >
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="table_id" property="tableId" jdbcType="INTEGER" />
+    <result column="oder_price" property="oderPrice" jdbcType="INTEGER" />
+    <result column="pay_status" property="payStatus" jdbcType="BIT" />
+    <result column="order_createtime" property="orderCreatetime" jdbcType="DATE" />
+    <result column="order_xxx" property="orderXxx" jdbcType="VARCHAR" />
+    <result column="order_xxxx" property="orderXxxx" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, table_id, oder_price, pay_status, order_createtime, order_xxx, order_xxxx
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chinasie.baoleme.domain.Order" >
+    insert into t_order (order_id, table_id, oder_price, 
+      pay_status, order_createtime, order_xxx, 
+      order_xxxx)
+    values (#{orderId,jdbcType=INTEGER}, #{tableId,jdbcType=INTEGER}, #{oderPrice,jdbcType=INTEGER}, 
+      #{payStatus,jdbcType=BIT}, #{orderCreatetime,jdbcType=DATE}, #{orderXxx,jdbcType=VARCHAR}, 
+      #{orderXxxx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasie.baoleme.domain.Order" >
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="tableId != null" >
+        table_id,
+      </if>
+      <if test="oderPrice != null" >
+        oder_price,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="orderCreatetime != null" >
+        order_createtime,
+      </if>
+      <if test="orderXxx != null" >
+        order_xxx,
+      </if>
+      <if test="orderXxxx != null" >
+        order_xxxx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="tableId != null" >
+        #{tableId,jdbcType=INTEGER},
+      </if>
+      <if test="oderPrice != null" >
+        #{oderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=BIT},
+      </if>
+      <if test="orderCreatetime != null" >
+        #{orderCreatetime,jdbcType=DATE},
+      </if>
+      <if test="orderXxx != null" >
+        #{orderXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="orderXxxx != null" >
+        #{orderXxxx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinasie.baoleme.domain.Order" >
+    update t_order
+    <set >
+      <if test="tableId != null" >
+        table_id = #{tableId,jdbcType=INTEGER},
+      </if>
+      <if test="oderPrice != null" >
+        oder_price = #{oderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=BIT},
+      </if>
+      <if test="orderCreatetime != null" >
+        order_createtime = #{orderCreatetime,jdbcType=DATE},
+      </if>
+      <if test="orderXxx != null" >
+        order_xxx = #{orderXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="orderXxxx != null" >
+        order_xxxx = #{orderXxxx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinasie.baoleme.domain.Order" >
+    update t_order
+    set table_id = #{tableId,jdbcType=INTEGER},
+      oder_price = #{oderPrice,jdbcType=INTEGER},
+      pay_status = #{payStatus,jdbcType=BIT},
+      order_createtime = #{orderCreatetime,jdbcType=DATE},
+      order_xxx = #{orderXxx,jdbcType=VARCHAR},
+      order_xxxx = #{orderXxxx,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>
