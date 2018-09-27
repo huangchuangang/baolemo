@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sie.full.dao.StockMapper" >
+  <resultMap id="BaseResultMap" type="com.sie.full.model.Stock" >
+    <id column="stock_id" property="stockId" jdbcType="INTEGER" />
+    <result column="stock_name" property="stockName" jdbcType="VARCHAR" />
+    <result column="stock_total" property="stockTotal" jdbcType="DOUBLE" />
+    <result column="stock_createtime" property="stockCreatetime" jdbcType="TIMESTAMP" />
+    <result column="stock_updatetime" property="stockUpdatetime" jdbcType="TIMESTAMP" />
+    <result column="stock_xxx" property="stockXxx" jdbcType="VARCHAR" />
+    <result column="stock_xxxx" property="stockXxxx" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    stock_id, stock_name, stock_total, stock_createtime, stock_updatetime, stock_xxx, 
+    stock_xxxx
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_stock
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_stock
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sie.full.model.Stock" >
+    insert into t_stock (stock_id, stock_name, stock_total, 
+      stock_createtime, stock_updatetime, stock_xxx, 
+      stock_xxxx)
+    values (#{stockId,jdbcType=INTEGER}, #{stockName,jdbcType=VARCHAR}, #{stockTotal,jdbcType=DOUBLE}, 
+      #{stockCreatetime,jdbcType=TIMESTAMP}, #{stockUpdatetime,jdbcType=TIMESTAMP}, #{stockXxx,jdbcType=VARCHAR}, 
+      #{stockXxxx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sie.full.model.Stock" >
+    insert into t_stock
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stockId != null" >
+        stock_id,
+      </if>
+      <if test="stockName != null" >
+        stock_name,
+      </if>
+      <if test="stockTotal != null" >
+        stock_total,
+      </if>
+      <if test="stockCreatetime != null" >
+        stock_createtime,
+      </if>
+      <if test="stockUpdatetime != null" >
+        stock_updatetime,
+      </if>
+      <if test="stockXxx != null" >
+        stock_xxx,
+      </if>
+      <if test="stockXxxx != null" >
+        stock_xxxx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stockId != null" >
+        #{stockId,jdbcType=INTEGER},
+      </if>
+      <if test="stockName != null" >
+        #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockTotal != null" >
+        #{stockTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="stockCreatetime != null" >
+        #{stockCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockUpdatetime != null" >
+        #{stockUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockXxx != null" >
+        #{stockXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="stockXxxx != null" >
+        #{stockXxxx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sie.full.model.Stock" >
+    update t_stock
+    <set >
+      <if test="stockName != null" >
+        stock_name = #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockTotal != null" >
+        stock_total = #{stockTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="stockCreatetime != null" >
+        stock_createtime = #{stockCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockUpdatetime != null" >
+        stock_updatetime = #{stockUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockXxx != null" >
+        stock_xxx = #{stockXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="stockXxxx != null" >
+        stock_xxxx = #{stockXxxx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sie.full.model.Stock" >
+    update t_stock
+    set stock_name = #{stockName,jdbcType=VARCHAR},
+      stock_total = #{stockTotal,jdbcType=DOUBLE},
+      stock_createtime = #{stockCreatetime,jdbcType=TIMESTAMP},
+      stock_updatetime = #{stockUpdatetime,jdbcType=TIMESTAMP},
+      stock_xxx = #{stockXxx,jdbcType=VARCHAR},
+      stock_xxxx = #{stockXxxx,jdbcType=VARCHAR}
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </update>
+</mapper>
