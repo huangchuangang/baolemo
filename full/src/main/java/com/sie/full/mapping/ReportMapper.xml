@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sie.full.dao.ReportMapper" >
+  <resultMap id="BaseResultMap" type="com.sie.full.model.Report" >
+    <result column="report_id" property="reportId" jdbcType="INTEGER" />
+    <result column="today_income" property="todayIncome" jdbcType="INTEGER" />
+    <result column="today_expenditure" property="todayExpenditure" jdbcType="INTEGER" />
+    <result column="income_createtime" property="incomeCreatetime" jdbcType="TIMESTAMP" />
+    <result column="income_updatetime" property="incomeUpdatetime" jdbcType="TIMESTAMP" />
+    <result column="expenditure_createtime" property="expenditureCreatetime" jdbcType="TIMESTAMP" />
+    <result column="expenditure_updatetime" property="expenditureUpdatetime" jdbcType="TIMESTAMP" />
+    <result column="report_xxx" property="reportXxx" jdbcType="VARCHAR" />
+    <result column="report_xxxx" property="reportXxxx" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sie.full.model.Report" >
+    insert into t_report (report_id, today_income, today_expenditure, 
+      income_createtime, income_updatetime, 
+      expenditure_createtime, expenditure_updatetime, 
+      report_xxx, report_xxxx)
+    values (#{reportId,jdbcType=INTEGER}, #{todayIncome,jdbcType=INTEGER}, #{todayExpenditure,jdbcType=INTEGER}, 
+      #{incomeCreatetime,jdbcType=TIMESTAMP}, #{incomeUpdatetime,jdbcType=TIMESTAMP}, 
+      #{expenditureCreatetime,jdbcType=TIMESTAMP}, #{expenditureUpdatetime,jdbcType=TIMESTAMP}, 
+      #{reportXxx,jdbcType=VARCHAR}, #{reportXxxx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sie.full.model.Report" >
+    insert into t_report
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="reportId != null" >
+        report_id,
+      </if>
+      <if test="todayIncome != null" >
+        today_income,
+      </if>
+      <if test="todayExpenditure != null" >
+        today_expenditure,
+      </if>
+      <if test="incomeCreatetime != null" >
+        income_createtime,
+      </if>
+      <if test="incomeUpdatetime != null" >
+        income_updatetime,
+      </if>
+      <if test="expenditureCreatetime != null" >
+        expenditure_createtime,
+      </if>
+      <if test="expenditureUpdatetime != null" >
+        expenditure_updatetime,
+      </if>
+      <if test="reportXxx != null" >
+        report_xxx,
+      </if>
+      <if test="reportXxxx != null" >
+        report_xxxx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="reportId != null" >
+        #{reportId,jdbcType=INTEGER},
+      </if>
+      <if test="todayIncome != null" >
+        #{todayIncome,jdbcType=INTEGER},
+      </if>
+      <if test="todayExpenditure != null" >
+        #{todayExpenditure,jdbcType=INTEGER},
+      </if>
+      <if test="incomeCreatetime != null" >
+        #{incomeCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="incomeUpdatetime != null" >
+        #{incomeUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expenditureCreatetime != null" >
+        #{expenditureCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expenditureUpdatetime != null" >
+        #{expenditureUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportXxx != null" >
+        #{reportXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="reportXxxx != null" >
+        #{reportXxxx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

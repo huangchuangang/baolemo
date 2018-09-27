@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sie.full.dao.KindMapper" >
+  <resultMap id="BaseResultMap" type="com.sie.full.model.Kind" >
+    <id column="kind_id" property="kindId" jdbcType="INTEGER" />
+    <result column="kind_name" property="kindName" jdbcType="VARCHAR" />
+    <result column="kind_createtime" property="kindCreatetime" jdbcType="TIMESTAMP" />
+    <result column="kind_updatetime" property="kindUpdatetime" jdbcType="TIMESTAMP" />
+    <result column="kind_xxx" property="kindXxx" jdbcType="VARCHAR" />
+    <result column="kind_xxxx" property="kindXxxx" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    kind_id, kind_name, kind_createtime, kind_updatetime, kind_xxx, kind_xxxx
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_kind
+    where kind_id = #{kindId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_kind
+    where kind_id = #{kindId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sie.full.model.Kind" >
+    insert into t_kind (kind_id, kind_name, kind_createtime, 
+      kind_updatetime, kind_xxx, kind_xxxx
+      )
+    values (#{kindId,jdbcType=INTEGER}, #{kindName,jdbcType=VARCHAR}, #{kindCreatetime,jdbcType=TIMESTAMP}, 
+      #{kindUpdatetime,jdbcType=TIMESTAMP}, #{kindXxx,jdbcType=VARCHAR}, #{kindXxxx,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sie.full.model.Kind" >
+    insert into t_kind
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="kindId != null" >
+        kind_id,
+      </if>
+      <if test="kindName != null" >
+        kind_name,
+      </if>
+      <if test="kindCreatetime != null" >
+        kind_createtime,
+      </if>
+      <if test="kindUpdatetime != null" >
+        kind_updatetime,
+      </if>
+      <if test="kindXxx != null" >
+        kind_xxx,
+      </if>
+      <if test="kindXxxx != null" >
+        kind_xxxx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="kindId != null" >
+        #{kindId,jdbcType=INTEGER},
+      </if>
+      <if test="kindName != null" >
+        #{kindName,jdbcType=VARCHAR},
+      </if>
+      <if test="kindCreatetime != null" >
+        #{kindCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="kindUpdatetime != null" >
+        #{kindUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="kindXxx != null" >
+        #{kindXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="kindXxxx != null" >
+        #{kindXxxx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sie.full.model.Kind" >
+    update t_kind
+    <set >
+      <if test="kindName != null" >
+        kind_name = #{kindName,jdbcType=VARCHAR},
+      </if>
+      <if test="kindCreatetime != null" >
+        kind_createtime = #{kindCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="kindUpdatetime != null" >
+        kind_updatetime = #{kindUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="kindXxx != null" >
+        kind_xxx = #{kindXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="kindXxxx != null" >
+        kind_xxxx = #{kindXxxx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where kind_id = #{kindId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sie.full.model.Kind" >
+    update t_kind
+    set kind_name = #{kindName,jdbcType=VARCHAR},
+      kind_createtime = #{kindCreatetime,jdbcType=TIMESTAMP},
+      kind_updatetime = #{kindUpdatetime,jdbcType=TIMESTAMP},
+      kind_xxx = #{kindXxx,jdbcType=VARCHAR},
+      kind_xxxx = #{kindXxxx,jdbcType=VARCHAR}
+    where kind_id = #{kindId,jdbcType=INTEGER}
+  </update>
+</mapper>

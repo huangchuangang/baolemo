@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sie.full.dao.TableMapper" >
+  <resultMap id="BaseResultMap" type="com.sie.full.model.Table" >
+    <id column="table_id" property="tableId" jdbcType="INTEGER" />
+    <result column="table_name" property="tableName" jdbcType="VARCHAR" />
+    <result column="table_xxx" property="tableXxx" jdbcType="VARCHAR" />
+    <result column="table_xxxx" property="tableXxxx" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    table_id, table_name, table_xxx, table_xxxx
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_table
+    where table_id = #{tableId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_table
+    where table_id = #{tableId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sie.full.model.Table" >
+    insert into t_table (table_id, table_name, table_xxx, 
+      table_xxxx)
+    values (#{tableId,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{tableXxx,jdbcType=VARCHAR}, 
+      #{tableXxxx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sie.full.model.Table" >
+    insert into t_table
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tableId != null" >
+        table_id,
+      </if>
+      <if test="tableName != null" >
+        table_name,
+      </if>
+      <if test="tableXxx != null" >
+        table_xxx,
+      </if>
+      <if test="tableXxxx != null" >
+        table_xxxx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tableId != null" >
+        #{tableId,jdbcType=INTEGER},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableXxx != null" >
+        #{tableXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="tableXxxx != null" >
+        #{tableXxxx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sie.full.model.Table" >
+    update t_table
+    <set >
+      <if test="tableName != null" >
+        table_name = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableXxx != null" >
+        table_xxx = #{tableXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="tableXxxx != null" >
+        table_xxxx = #{tableXxxx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where table_id = #{tableId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sie.full.model.Table" >
+    update t_table
+    set table_name = #{tableName,jdbcType=VARCHAR},
+      table_xxx = #{tableXxx,jdbcType=VARCHAR},
+      table_xxxx = #{tableXxxx,jdbcType=VARCHAR}
+    where table_id = #{tableId,jdbcType=INTEGER}
+  </update>
+</mapper>

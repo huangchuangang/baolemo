@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sie.full.dao.OrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.sie.full.model.OrderDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="menu_id" property="menuId" jdbcType="INTEGER" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="menu_price" property="menuPrice" jdbcType="DOUBLE" />
+    <result column="menu_amount" property="menuAmount" jdbcType="INTEGER" />
+    <result column="menu_total" property="menuTotal" jdbcType="DOUBLE" />
+    <result column="order_detail_xxx" property="orderDetailXxx" jdbcType="VARCHAR" />
+    <result column="order_detail_xxxx" property="orderDetailXxxx" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, menu_id, menu_name, menu_price, menu_amount, menu_total, 
+    order_detail_xxx, order_detail_xxxx
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_detail
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sie.full.model.OrderDetail" >
+    insert into t_order_detail (id, order_id, menu_id, 
+      menu_name, menu_price, menu_amount, 
+      menu_total,  order_detail_xxx, 
+      order_detail_xxxx)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER}, 
+      #{menuName,jdbcType=VARCHAR}, #{menuPrice,jdbcType=DOUBLE}, #{menuAmount,jdbcType=INTEGER}, 
+      #{menuTotal,jdbcType=DOUBLE}, #{orderRemark,jdbcType=VARCHAR}, #{orderDetailXxx,jdbcType=VARCHAR}, 
+      #{orderDetailXxxx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sie.full.model.OrderDetail" >
+    insert into t_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="menuPrice != null" >
+        menu_price,
+      </if>
+      <if test="menuAmount != null" >
+        menu_amount,
+      </if>
+      <if test="menuTotal != null" >
+        menu_total,
+      </if>
+       <if test="orderDetailXxx != null" >
+        order_detail_xxx,
+      </if>
+      <if test="orderDetailXxxx != null" >
+        order_detail_xxxx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuPrice != null" >
+        #{menuPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="menuAmount != null" >
+        #{menuAmount,jdbcType=INTEGER},
+      </if>
+      <if test="menuTotal != null" >
+        #{menuTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="orderRemark != null" >
+        #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDetailXxx != null" >
+        #{orderDetailXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDetailXxxx != null" >
+        #{orderDetailXxxx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sie.full.model.OrderDetail" >
+    update t_order_detail
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuPrice != null" >
+        menu_price = #{menuPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="menuAmount != null" >
+        menu_amount = #{menuAmount,jdbcType=INTEGER},
+      </if>
+      <if test="menuTotal != null" >
+        menu_total = #{menuTotal,jdbcType=DOUBLE},
+      </if>
+      
+      <if test="orderDetailXxx != null" >
+        order_detail_xxx = #{orderDetailXxx,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDetailXxxx != null" >
+        order_detail_xxxx = #{orderDetailXxxx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sie.full.model.OrderDetail" >
+    update t_order_detail
+    set order_id = #{orderId,jdbcType=INTEGER},
+      menu_id = #{menuId,jdbcType=INTEGER},
+      menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_price = #{menuPrice,jdbcType=DOUBLE},
+      menu_amount = #{menuAmount,jdbcType=INTEGER},
+      menu_total = #{menuTotal,jdbcType=DOUBLE},
+      order_detail_xxx = #{orderDetailXxx,jdbcType=VARCHAR},
+      order_detail_xxxx = #{orderDetailXxxx,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
