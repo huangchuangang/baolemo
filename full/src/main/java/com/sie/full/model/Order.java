@@ -13,8 +13,6 @@ public class Order {
 
     private Date orderCreatetime;
 
-    private String orderRemark;
-
     private String orderXxx;
 
     private String orderXxxx;
@@ -73,12 +71,5 @@ public class Order {
 
     public void setOrderXxxx(String orderXxxx) {
         this.orderXxxx = orderXxxx == null ? null : orderXxxx.trim();
-    }
-    public String getOrderRemark() {
-        return orderRemark;
-    }
-
-    public void setOrderRemark(String orderRemark) {
-        this.orderRemark = orderRemark == null ? null : orderRemark.trim();
     }
 }
