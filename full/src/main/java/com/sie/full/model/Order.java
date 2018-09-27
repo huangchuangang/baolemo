@@ -3,14 +3,7 @@ package com.sie.full.model;
 import java.util.Date;
 
 public class Order {
-    @Override
-	public String toString() {
-		return "Order [orderId=" + orderId + ", tableId=" + tableId + ", oderPrice=" + oderPrice + ", payStatus="
-				+ payStatus + ", orderCreatetime=" + orderCreatetime + ", orderXxx=" + orderXxx + ", orderXxxx="
-				+ orderXxxx + "]";
-	}
-
-	private Integer orderId;
+    private Integer orderId;
 
     private Integer tableId;
 
@@ -19,6 +12,8 @@ public class Order {
     private Boolean payStatus;
 
     private Date orderCreatetime;
+
+    private String orderRemark;
 
     private String orderXxx;
 
@@ -78,5 +73,12 @@ public class Order {
 
     public void setOrderXxxx(String orderXxxx) {
         this.orderXxxx = orderXxxx == null ? null : orderXxxx.trim();
+    }
+    public String getOrderRemark() {
+        return orderRemark;
+    }
+
+    public void setOrderRemark(String orderRemark) {
+        this.orderRemark = orderRemark == null ? null : orderRemark.trim();
     }
 }
